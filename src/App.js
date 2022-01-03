@@ -1,30 +1,24 @@
 import { useState } from "react";
-import Buttom from "./components/Buttom";
+
 import Card from "./components/Card";
 import Container from "./components/Container";
-import Input from "./components/Input";
+
 import Lista from "./components/Lista";
-import useFormulario from "./hooks/useFormulario";
+import UserForm from "./components/UserForm";
+
 
 export default function App() {
 
   const [usuarios, setUsuarios] = useState([])
 
-  const [formulario, handleChange, reset] = useFormulario({
-    name: "",
-    lastname: "",
-    mail: "",
-  });
 
   
 
-  const submit = e=> {
-    e.preventDefault()
+  const submit = usuario=> {
     setUsuarios([
       ...usuarios,
-      formulario,
+      usuario,
     ])
-    reset()
   }
 
 
@@ -34,33 +28,13 @@ export default function App() {
     <Container>
       <Card>
         <div style={{ padding: 20 }}>
-          <form onSubmit={submit} >
-            <Input
-              label="Nombre"
-              name="name"
-              onChange={handleChange}
-              value={formulario.name}
-            />
-            <Input
-              label="Apellido"
-              name="lastname"
-              onChange={handleChange}
-              value={formulario.lastname}
-            />
-            <Input
-              label="Correo"
-              name="mail"
-              onChange={handleChange}
-              value={formulario.mail}
-            />
-            <Buttom>Enviar</Buttom>
-          </form>
+        <UserForm submit={submit} />
         </div>
       </Card>
       <Card>
         <ul>
           {usuarios.map(u => 
-            <li key='u.name'>{`${u.name} ${u.lastname} ${u.mail}`}</li>
+            <li key='u.mail'>{`${u.name} ${u.lastname} ${u.mail}`}</li>
           )}
         </ul>
       </Card>

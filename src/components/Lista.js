@@ -13,7 +13,7 @@ export default function Lista({ usuarios }) {
       <tbody>
         {usuarios.map((u) => {
           return (
-            <tr key='u.name'>
+            <tr key='u.mail'>
               <td>{u.name}</td>
               <td>{u.lastname}</td>
               <td>{u.mail}</td>
